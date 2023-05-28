@@ -1,0 +1,36 @@
+<html>
+<head>
+	<title>fetch part</title>
+	<link rel = "stylesheet" href = "fetch.css"/>
+</head>
+<body>
+	<h1>Marvel Character</h1>
+	<input type = "text" placeholder = "name" id = "name"></input>
+	<button onclick = "search()" id = "btn">click</button>
+</body>
+<script>
+	
+	
+	async function fetchData(url)
+	{
+		const response = await fetch(url);
+		const jsonData = await response.json();
+		return jsonData;
+	}
+	
+	
+	async function search()
+	{
+		let input = document.querySelector("#name").value;
+		localStorage.setItem("store",JSON.stringify(input));
+		let response = await fetchData(`https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${input}&apikey=3ad548118680d3dad3f194ff9e289c93&hash=2bf68c80955bd4f084b8fe653c6683a0&ts=1685222640625`,{method : "GET"})
+		
+		console.log(response);
+		
+		let userData = response[""];
+	}	
+	
+	
+	
+</script>
+</html>
